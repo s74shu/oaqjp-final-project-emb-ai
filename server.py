@@ -5,7 +5,7 @@ def emotion_dom(result):
     res = 0
     emo = ''
 
-    for k, v in result.items():
+    for k, v in result.items():        
         if v > res:
             emo = k
             res = v
@@ -16,11 +16,17 @@ app = Flask("Emotion Detector")
 
 @app.route("/emotionDetector")
 def emotion_detection():
+
+    res_message = ""
     text_to_analyze = request.args.get('textToAnalyze')
     response = emotion_detector(text_to_analyze)
-    emo = emotion_dom(response)
+    try:
+        emo = emotion_dom(response)
+        res_message = f"For the given statement, the system response is {response}. The dominant emotion is {emo}."
+    except TypeError:
+        res_message = "Invalid text! Please try again!"
 
-    return f"For the given statement, the system response is {response}. The dominant emotion is {emo}."  
+    return  res_message
 
 
 @app.route("/")
