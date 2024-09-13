@@ -1,6 +1,17 @@
 import requests
 import json
 
+def emotion_dom(result):
+        res = 0
+        emo = ''
+
+        for k, v in result.items():
+            if v > res:
+                emo = k
+                res = v
+
+        return emo
+
 def emotion_detector(text_to_analyze):
 
     url = 'https://sn-watson-emotion.labs.skills.network/v1/watson.runtime.nlp.v1/NlpService/EmotionPredict'
@@ -8,6 +19,8 @@ def emotion_detector(text_to_analyze):
     myobj = { "raw_document": { "text": text_to_analyze } }
 
     response = requests.post(url, json = myobj, headers = headers )
+
+    
     formatted_response = json.loads(response.text)
 
     return formatted_response['emotionPredictions'][0]['emotion']
