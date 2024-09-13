@@ -18,29 +18,19 @@ class TestEmotionDetection(unittest.TestCase):
         resultj = emotion_detector('I am glad this happened')
         self.assertEqual(self.__emotion_sel(resultj), 'joy')
 
-        resultj = emotion_detector('I am glad this happened')
-        self.assertEqual(self.__emotion_sel(resultj), 'joy')
+        resulta = emotion_detector('I am really mad about this')
+        self.assertEqual(self.__emotion_sel(resulta), 'anger')
 
-        resultj = emotion_detector('I am glad this happened')
-        self.assertEqual(self.__emotion_sel(resultj), 'joy')
+        resultd = emotion_detector('I feel disgusted just hearing about this')
+        self.assertEqual(self.__emotion_sel(resultd), 'disgust')
 
-        resultj = emotion_detector('I am glad this happened')
-        self.assertEqual(self.__emotion_sel(resultj), 'joy')
+        results = emotion_detector('I am so sad about this')
+        self.assertEqual(self.__emotion_sel(results), 'sadness')
 
-        resultj = emotion_detector('I am glad this happened')
-        self.assertEqual(self.__emotion_sel(resultj), 'joy')
-
-        
+        resultf = emotion_detector('I am really afraid that this will happen')
+        self.assertEqual(self.__emotion_sel(resultf), 'fear')
 
         return
-
-'''
-	
-I am really mad about this	anger
-I feel disgusted just hearing about this	disgust
-I am so sad about this	sadness
-I am really afraid that this will happen	fear
-'''
 
 
 if __name__ == '__main__':
